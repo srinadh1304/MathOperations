@@ -3,6 +3,9 @@ package com.bridgelabz.mathoperations;
 @FunctionalInterface
 interface MathFunctionIF{
 	int calculate(int a, int b);
+	static void printResult(int a, int b, String function, MathFunctionIF functionObject) {
+		System.out.println("Result of  " +function+" is "+functionObject.calculate(a,b));
+	}
 }
 
 public class MathOperations{
@@ -12,12 +15,15 @@ public class MathOperations{
 		MathFunctionIF add = Integer::sum;
 		MathFunctionIF subtract = (int a, int b) -> a-b;
 		MathFunctionIF multiply = (int a, int b) -> a*b;
-		MathFunctionIF divide = (int a, int b) -> a/b;
-		System.out.println("ADDITION: "+add.calculate(10, 4));
-		System.out.println("SUBTRACTION: "+subtract.calculate(10, 4));
-		System.out.println("MULTIPLICATION: "+multiply.calculate(10, 4));
-		System.out.println("DIVISION: "+divide.calculate(10, 4));
-		
+		MathFunctionIF divide = (int a, int b) -> {
+			if(b==0)return 0;
+			return a/b;
+		};
+		MathFunctionIF.printResult(6, 3, "Addition", add);
+		MathFunctionIF.printResult(6, 3, "SUbtraction", subtract);
+		MathFunctionIF.printResult(6, 3, "Multiplication", multiply);
+		MathFunctionIF.printResult(6, 0, "Division", divide);
+
 	}
 
 }
