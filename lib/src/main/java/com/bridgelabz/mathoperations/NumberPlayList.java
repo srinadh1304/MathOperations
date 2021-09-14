@@ -99,5 +99,10 @@ public class NumberPlayList {
 					  .reduce(0,Integer::sum);
 		long count = myNumberList.stream().count();
 		System.out.println("the avg of "+sum+"/"+count+" is "+sum/count);
+		
+		boolean allEven = myNumberList.stream().allMatch(isEvenFunction);
+		boolean oneEven = myNumberList.stream().anyMatch(isEvenFunction);
+		boolean noneMultOfSix = myNumberList.stream().noneMatch(n -> n>0 && n%6 == 0);
+		System.out.println("allEven : " + allEven+" \nOneEven : "+oneEven+" \nnoneMultOfSix : "+ noneMultOfSix);
  	}
 }
