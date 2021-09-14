@@ -1,8 +1,5 @@
 package com.bridgelabz.mathoperations;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -10,44 +7,59 @@ import java.util.function.Predicate;
 public class NumberPlayList {
 
 	public static void main(String[] args) {
-
 		List<Integer> myNumberList = new ArrayList<Integer>();
-		for(int index=0 ; index<5 ; index++)
-			myNumberList.add(index);
-		Iterator<Integer> iterator = myNumberList.iterator();
-		while(iterator.hasNext()) {
-			Integer eachInteger = iterator.next();
-			System.out.println("Iterator Value: "+eachInteger);
+		for(int i=0;i<5;i++) myNumberList.add(i);
+		
+		Iterator<Integer> it = myNumberList.iterator();
+		while(it.hasNext()) {
+			Integer i =it.next();
+			System.out.println("Mth1: Iterator value : "+i);
 		}
-		class MyConsumer implements Consumer<Integer>{
-			public void accept(Integer t) {
-				System.out.println("Method2 : Consumer Impl Value: "+t);
-			}
+		
+		System.out.println();
+		class MyConsumer implements  Consumer<Integer>{
+				public void accept(Integer t) {
+					System.out.println("Mth2: consumer impl value : "+t);
+				}
 		}
 		MyConsumer action = new MyConsumer();
 		myNumberList.forEach(action);
-
-
+		
+		System.out.println();
 		myNumberList.forEach(new Consumer<Integer>(){
 			public void accept(Integer t) {
-				System.out.println("Method3 : forEach anonymous class Value: "+t);
+				System.out.println("Mth3: foreach anonymous class value : "+t);
 			}
 		});
-
-		Consumer<Integer> myListAction = n -> {
-			System.out.println("Method4 : forEach Lambda Impl Value: "+n);
+		
+		System.out.println();
+		Consumer<Integer> myListAction =  n -> {
+			System.out.println("Mth4: foreach lambda impl value : "+ n);
 		};
 		myNumberList.forEach(myListAction);
-		myNumberList.forEach(n ->{
-			System.out.println("Method5 : forEach Lambda Impl Value: "+n);
+		
+		
+		System.out.println();
+		myNumberList.forEach(n->{
+			System.out.println("Mth5: foreach lambda impl value : "+ n);
 		});
+		
+		System.out.println();
 		Function<Integer, Double> toDoubleFunction = Integer::doubleValue;
-		myNumberList.forEach(n -> {
-			System.out.println("Mth6 : forEach Value: " + toDoubleFunction.apply(n));
+		myNumberList.forEach(n->{
+			System.out.println("Mth5: foreach lambda double value : "+ toDoubleFunction.apply(n));
 		});
-		Predicate<Integer> isEvenFunction = n -> n > 0 && n % 2 == 0;
-		myNumberList.forEach(n -> {
-			System.out.println("Method7 : forEach Value of: " + n + " check for Even : " + isEvenFunction.test(n));
+		
+		System.out.println();
+		Predicate<Integer> isEvenFunction = n ->  n%2==0;
+		myNumberList.forEach(n->{
+			System.out.println("Mth5: foreach value of : "+n+" check for even : " +isEvenFunction.test(n));
 		});
-	}
+		
+		
+		System.out.println();
+		myNumberList.stream().forEach(n ->{
+			System.out.println("Mth8: stream forEach value : "+n);
+		});
+ 	}
 }
