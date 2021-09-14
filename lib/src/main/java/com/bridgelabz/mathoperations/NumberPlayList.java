@@ -1,5 +1,4 @@
 package com.bridgelabz.mathoperations;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -75,7 +74,13 @@ public class NumberPlayList {
 		List<Integer> evenList = myNumberList.stream()
 								 .filter(isEvenFunction)
 								 .collect(Collectors.toList());
-		System.out.println("Printing Even List : "+evenList);
+		System.out.println("Printing Even List : "+evenList);	
 		
+		Integer firstEven = myNumberList.stream()
+							.filter(isEvenFunction)
+							.peek(n-> System.out.println("Peek even number "+ n))
+							.findFirst()
+							.orElse(null);
+		System.out.println("the first even is : "+ firstEven);
  	}
 }
